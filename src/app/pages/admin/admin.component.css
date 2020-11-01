@@ -1,0 +1,39 @@
+.mat-tab-group {
+    margin-bottom: 48px;
+  }
+
+  .button-text {
+    padding-left: 50px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px; /* Add 24px to align the text in the center since the icon's width is 24px */
+}
+
+td.mat-column-star {
+  width: 10px;
+  padding-right: 2px;
+}
+
+th.mat-column-position, td.mat-column-position {
+  padding-left: 2px;
+  padding-right: 2px;
+  
+}
+
+
+
+/* .mat-column-name {
+  flex: 0 0 200px;
+}
+
+.mat-column-designation {
+  flex: 0 0 200px;
+}
+.mat-column-department {
+  flex: 0 0 200px;
+}
+.mat-column-select {
+  flex: 0 0 200px;
+} */
+
+

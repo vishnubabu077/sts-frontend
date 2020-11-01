@@ -1,0 +1,121 @@
+<ol>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <h4 class="modal-title" *ngIf="!edit">Add Teacher</h4>
+    <h4 class="modal-title" *ngIf="edit" >  Edit Teacher</h4>
+    <form [formGroup]="addTeacherForm" >
+      <!---first name-->
+    <mat-grid-tile>
+      <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+        <mat-label>Enter First Name</mat-label>
+        <input matInput #input maxlength="20" placeholder="Ex. Smruthy" formControlName="firstName" >
+        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </mat-grid-tile>
+
+      <!---second name-->
+
+    <mat-grid-tile>
+      <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+        <mat-label>Enter Second Name</mat-label>
+        <input matInput #input maxlength="20" placeholder="Ex. MS" formControlName="lastName" >
+        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Select Department</mat-label>
+        <mat-select formControlName="departmentForm" [compareWith]="compareFn">
+          <mat-option  *ngFor="let option of departments" [value]=option>{{option.department}}</mat-option>
+        </mat-select>
+        <mat-hint align="end">Click Here ^</mat-hint>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+        <mat-label>Select Designation</mat-label>
+        <mat-select formControlName="designationForm" [compareWith]="compareFn">
+          <mat-option  *ngFor="let option of designations" [value]=option>{{option.designation}}</mat-option>
+        </mat-select>
+        <mat-hint align="end">Click Here ^</mat-hint>
+      </mat-form-field>
+    </mat-grid-tile>
+   
+  </form>
+ 
+  </mat-grid-list>
+
+ 
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="saveTeacher()">Save</button>
+  <button mat-raised-button  color="accent" (click)="close()" >Cancel</button>
+    
+  </div>
+
+  
+</ol>
+
+
+
+
+
+
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Add Teacher</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addTeacherForm" >
+      
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">First Name</label>
+              <input type="text" class="form-control"  formControlName="firstName" id="inputEmail4" required >
+              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+              class="alert alert-danger">
+          
+            <div *ngIf="firstName.errors.required">
+              Name is required.
+            </div>
+            </div>
+            </div>
+           
+
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Second Name</label>
+              <input type="text" class="form-control"  formControlName="lastName" id="inputPassword4">
+            </div>
+          </div>
+         
+        
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              
+                    <label for="inputState">Department</label>
+                    <select id="inputState" class="form-control"  formControlName="departmenForm">
+                      <option selected>Choose...</option>
+                      <option *ngFor="let option of departments" [ngValue]="option">{{option.department}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+              
+                    <label for="inputState">Designaton</label>
+                    <select id="inputState" class="form-control"  formControlName="designationForm">
+                      <option selected>Choose...</option>
+                      <option *ngFor="let option of designations" [ngValue]="option">{{option.designation}}</option>
+                    </select>
+                  </div>
+          </div>
+
+
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="saveTeacher()">Save changes</button>
+  </div>
+  
+ -->

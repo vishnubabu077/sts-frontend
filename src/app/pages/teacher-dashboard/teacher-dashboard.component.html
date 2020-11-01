@@ -1,0 +1,213 @@
+<mat-toolbar color="basic">
+  <div>
+    <span>
+      <mat-label class="button-text">Select Department:</mat-label>
+      <mat-select (selectionChange)="departmentChange($event) ">
+        <mat-option *ngFor="let option of departments" [value]=option>
+          {{option.department}}</mat-option>
+      </mat-select>
+    </span>
+  </div>
+</mat-toolbar>
+
+<mat-tab-group mat-align-tabs="start" [backgroundColor]="backgroundColor" *ngIf="departmentSelected">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Student</h2>
+    </ng-template>
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openStudDialog()">Add Students</button>
+        </div>
+      </div>
+    </section>
+    <mat-table [dataSource]="students" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Edit</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-stroked-button aria-label="Example icon button with a home icon" (click)="edit(element)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Name</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+
+      <!-- DOB Column -->
+      <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Date Of Birth</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.dob}} </mat-cell>
+      </ng-container>
+
+
+
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b> Address </b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+      </ng-container>
+
+
+      <!-- Gender Column -->
+      <!-- <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef>
+            <h3> <b>Gender</b></h3>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.gender}}  </mat-cell>
+        </ng-container>  -->
+
+
+      <!-- Department Column -->
+      <ng-container matColumnDef="department">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Department </b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department.department}} </mat-cell>
+      </ng-container>
+
+
+      <!-- course Column -->
+      <ng-container matColumnDef="course">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Course</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.course.course}} </mat-cell>
+      </ng-container>
+
+
+      <!-- Email ID Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b> EmailID </b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+
+    
+
+      <mat-header-row *matHeaderRowDef="displayedStudentColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedStudentColumns;"></mat-row>
+    </mat-table>
+  </mat-tab>
+
+
+
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Study Material</h2>
+    </ng-template>
+
+
+        <app-fileupload (complete)="onFileComplete($event)" [department]=selectedDepartment ></app-fileupload>
+    
+
+      
+            <mat-table [dataSource]="files" class="mat-elevation-z8">
+        
+              
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef>
+                  <h3> <b>File Name</b></h3>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.fileName}} </mat-cell>
+              </ng-container>
+        
+        
+              <!-- DOB Column -->
+              <ng-container matColumnDef="department">
+                <mat-header-cell *matHeaderCellDef>
+                  <h3> <b>Department</b></h3>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.department.department}} </mat-cell>
+              </ng-container>
+        
+        
+        
+              <!-- Address Column -->
+              <ng-container matColumnDef="batch">
+                <mat-header-cell *matHeaderCellDef>
+                  <h3> <b> Batch </b></h3>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.batch}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Download">
+                <mat-header-cell *matHeaderCellDef>
+                  <h3> <b>Download</b></h3>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <button mat-stroked-button aria-label="Example icon button with a home icon" (click)="download(element)">
+                    Download
+                  </button>
+        
+                </mat-cell>
+              </ng-container>
+        
+              <mat-header-row *matHeaderRowDef="displayedFilesColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedFilesColumns;"></mat-row>
+            </mat-table>
+            
+           
+    <!-- <section> -->
+    <!-- <div align="right" class="button-text"> -->
+    <!-- <div class="example-button-row"> -->
+    <!-- <button mat-raised-button color="primary" (click)="openStudyMaterialDialog()">Add StudyMaterials</button>  -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </section> -->
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Assignment Works</h2>
+    </ng-template>
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openAssignmentDialog()"> Upload AssignmentWorks</button>
+        </div>
+      </div>
+    </section>
+  </mat-tab>
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Attendance Management</h2>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Exam Information</h2>
+    </ng-template>
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openExamDialog()"> Upload Question Papers</button>
+        </div>
+      </div>
+    </section>
+  </mat-tab>
+
+</mat-tab-group>

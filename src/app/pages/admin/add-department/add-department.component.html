@@ -1,0 +1,28 @@
+
+      <ol>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <h4 class="modal-title" *ngIf="!edit">Add Department</h4>
+        <h4 class="modal-title" *ngIf="edit" >  Edit Department</h4>
+        <form [formGroup]="addDepartmentForm" > 
+
+          <mat-grid-tile>
+            <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+              <mat-label>Enter Department Name</mat-label>
+              <input matInput #input maxlength="20" placeholder="Ex. Computer Science" formControlName="departmentForm" >
+              <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+            </mat-form-field>
+          </mat-grid-tile>
+        </form>
+ 
+      </mat-grid-list>
+    
+     
+      <div mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="saveDepartment()">Save</button>
+      <button mat-raised-button  color="accent" (click)="close()" >Cancel</button>
+        
+      </div>
+    
+      
+    </ol>
+      

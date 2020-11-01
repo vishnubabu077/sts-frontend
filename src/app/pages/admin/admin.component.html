@@ -1,0 +1,267 @@
+<!-- <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs"  (activeIdChange)="tabchange($event)">
+  
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Teachers</a>
+      <ng-template ngbNavContent>
+        <div align="right">
+        <button type="button" class="btn btn-success mr-3 mb-1" (click)="addTeacher()">Add Teacher</button>
+        </div>
+      <table class="table table-striped" *ngIf="active===1">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Department</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor= "let teacher of teachers; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            
+            {{ teacher.first_name }}  {{ teacher.last_name }}
+          </td>
+          <td>{{ teacher.designation.designation }}</td>
+          <td>{{ teacher.department.department }}</td>
+    
+    
+          
+        </tr>
+        </tbody>
+      </table>
+    </ng-template>
+    </li>
+ 
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Department</a>
+      <ng-template ngbNavContent>
+        <div align="right">
+          <button type="button" class="btn btn-success mr-3 mb-1" (click)="addDepartment()">Add Department</button>
+          </div>
+        <table class="table table-striped" *ngIf="active===2">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Department</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor= "let department of departments; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ department.department }}</td> 
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+      </li>
+      
+   
+      
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>Designation</a>
+      <ng-template ngbNavContent> 
+        <div align="right">
+          <button type="button" class="btn btn-success mr-3 mb-1" (click)="addDesignation()">Add Designation</button>
+          </div>
+        <table class="table table-striped" *ngIf="active===3">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Designation</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor= "let designation of designations; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ designation.designation }}</td> 
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </li>
+
+
+  </ul>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+   -->
+<mat-tab-group mat-align-tabs="start" [backgroundColor]="backgroundColor">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Teacher</h2>
+    </ng-template>
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openDialog()">Add Teacher</button>
+        </div>
+      </div>
+    </section>
+
+
+    <mat-table  [dataSource]="teachers" class="mat-elevation-z8">
+
+      <ng-container  matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Edit</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-stroked-button aria-label="Example icon button with a home icon" (click)="edit(element)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" >edit</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Name</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}} </mat-cell>
+      </ng-container>
+
+      <!-- Designation Column -->
+      <ng-container matColumnDef="designation">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Designation</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.designation.designation}} </mat-cell>
+      </ng-container>
+
+      <!-- Department Column -->
+      <ng-container matColumnDef="department">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Department </b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department.department}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedTeacherColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedTeacherColumns;"></mat-row>
+    </mat-table>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Departments</h2>
+    </ng-template>
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openDepartmentDialog()">Add Department</button>
+        </div>
+      </div>
+    </section>
+
+
+    <mat-table [dataSource]="departments" class="mat-elevation-z8">
+
+      <ng-container  matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Edit</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-stroked-button aria-label="Example icon button with a home icon" (click)="editDepartment(element)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" >edit</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+
+
+      <!-- Department Column -->
+      <ng-container matColumnDef="department">
+        <mat-header-cell *matHeaderCellDef>
+          <h3><b> Department</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedDepartmentColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedDepartmentColumns;"></mat-row>
+    </mat-table>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Designation</h2>
+    </ng-template>
+
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openDesignationDialog()">Add Designation</button>
+        </div>
+      </div>
+    </section>
+    <mat-table [dataSource]="designations" class="mat-elevation-z8">
+
+      <ng-container  matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Edit</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-stroked-button aria-label="Example icon button with a home icon" (click)="editDesignation(element)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" >edit</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+
+
+      <!-- Designation Column -->
+      <ng-container matColumnDef="designation">
+        <mat-header-cell *matHeaderCellDef>
+          <h3><b>Designation</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.designation}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedDesignationColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedDesignationColumns;"></mat-row>
+    </mat-table>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <h2>Courses</h2>
+    </ng-template>
+    <section>
+      <div align="right" class="button-text">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openCourseDialog()">Add Course</button>
+        </div>
+      </div>
+    </section>
+
+
+    <mat-table [dataSource]="courses" class="mat-elevation-z8">
+
+      <ng-container  matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef>
+          <h3> <b>Edit</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-stroked-button aria-label="Example icon button with a home icon" (click)="editCourse(element)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" >edit</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+
+
+      <!-- Course Column -->
+      <ng-container matColumnDef="course">
+        <mat-header-cell *matHeaderCellDef>
+          <h3><b> Course</b></h3>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.course}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedCourseColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedCourseColumns;"></mat-row>
+    </mat-table>
+  </mat-tab>
+</mat-tab-group>

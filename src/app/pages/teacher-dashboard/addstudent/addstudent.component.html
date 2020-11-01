@@ -1,0 +1,92 @@
+<ol>
+    <mat-grid-list cols="2" rowHeight="2:1">
+       <h4 class="modal-title"*ngIf="!edit">Add Student</h4> 
+       <h4 class="modal-title" *ngIf="edit">Edit Student</h4> 
+      <form [formGroup]="addStudentForm">
+
+        <!--Name-->
+        
+      <mat-grid-tile>
+        <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+          <mat-label>Enter the Name</mat-label>
+          <input matInput #input maxlength="20" placeholder="Ex. Smruthy M S" formControlName="name" >
+          <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+        </mat-form-field>
+      </mat-grid-tile>
+    
+  <!---date of birth-->
+  <mat-grid-tile>
+    <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+      <mat-label>Date Of Birth</mat-label>
+      <input matInput #input maxlength="20" placeholder="Ex. MM/dd/yyyy" formControlName="dob" >
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  
+<!-- Address -->
+<mat-grid-tile>
+  <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <textarea matInput  #input maxlength="50" placeholder="Ex. Smruthy Villa,House No,place,pin:" formControlName="address"></textarea>
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+  </mat-form-field>
+  </mat-grid-tile>
+
+      <!-- gender -->
+      <!-- <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Gender</mat-label>
+    <mat-radio-group aria-label="Select Gender" formControlName="gender">
+        <mat-radio-button value="1">Male</mat-radio-button>
+        <mat-radio-button value="2">Female</mat-radio-button>
+      </mat-radio-group>
+    </mat-form-field>
+    </mat-grid-tile> -->
+
+  <!-- department -->
+    
+  <mat-grid-tile>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Department</mat-label>
+      <mat-select formControlName="departmentForm" [compareWith]="compareFn">
+        <mat-option  *ngFor="let option of departments" [value]=option>{{option.department}}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Click Here ^</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+
+  <!-- Course -->
+  <mat-grid-tile>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Course</mat-label>
+    <mat-select formControlName="courseForm" [compareWith]="compareFn">
+      <mat-option  *ngFor="let option of courses" [value]=option>{{option.course}}</mat-option>
+    </mat-select> 
+    <mat-hint align="end">Click Here ^</mat-hint>
+ </mat-form-field>
+</mat-grid-tile>
+
+
+<mat-grid-tile>
+  <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+    <mat-label>Email ID</mat-label>
+    <input matInput #input maxlength="20" placeholder="Ex. Smruthy M S" formControlName="email" >
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+  </mat-form-field>
+</mat-grid-tile>
+
+
+     </form>
+   
+    </mat-grid-list>
+  
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="saveStudent()">Save</button>
+    <button mat-raised-button  color="accent" (click)="close()" >Cancel</button>
+      
+    </div>
+   
+  </ol>
+  
+  
