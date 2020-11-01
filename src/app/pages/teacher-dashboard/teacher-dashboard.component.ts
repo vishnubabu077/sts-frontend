@@ -37,6 +37,7 @@ export class TeacherDashboardComponent implements OnInit {
   }
   edit(event: any) {
     console.log(event, "edit")
+    console.log(event, "edit")
     const dialogRef = this.dialog.open(AddstudentComponent, {
       width: '500px',
       data: { student: event, edit: true }
