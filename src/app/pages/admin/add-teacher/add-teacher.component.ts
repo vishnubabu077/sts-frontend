@@ -43,6 +43,7 @@ export class AddTeacherComponent implements OnInit {
         lastName: ["", Validators.required],
         departmentForm: ["", Validators.required],
         designationForm: ["", Validators.required],
+        email: ["", Validators.required],
       }
     )
     if (this.edit) {
@@ -50,6 +51,7 @@ export class AddTeacherComponent implements OnInit {
       this.lastName.setValue(this.teacherToEdit.last_name);
       this.departmentForm.setValue(this.teacherToEdit.department);
       this.designationForm.setValue(this.teacherToEdit.designation);
+      this.email.setValue(this.teacherToEdit.email);
     }
   }
 
@@ -103,9 +105,15 @@ export class AddTeacherComponent implements OnInit {
     return this.addTeacherForm.get("designationForm");
   }
 
+  get email() {
+    return this.addTeacherForm.get("email");
+  }
+
+
   createModel() {
     this.teacher = new TeacherModel();
     this.teacher.first_name = this.firstName.value;
+    this.teacher.email = this.email.value;
     this.teacher.last_name = this.lastName.value
     this.teacher.department = this.departmentForm.value;
     this.teacher.designation = this.designationForm.value;

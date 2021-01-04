@@ -13,10 +13,22 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { TeacherDashModule } from './pages/teacher-dashboard/teacherDash.module';
 import {MatRadioModule} from '@angular/material/radio';
 
+import { ProfileComponent } from './pages/profile/profile.component';
+import { LoginModule } from './pages/login-component/login.module';
+import { authInterceptorProviders } from './library/auth.interceptor';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { StudentdashboardComponent } from './pages/studentdashboard/studentdashboard.component';
+
+import {StudentDashBoardModule  } from './pages/studentdashboard/student.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
+
+  
     
     
   ],
@@ -26,15 +38,16 @@ import {MatRadioModule} from '@angular/material/radio';
     BrowserAnimationsModule,
     HttpClientModule,MatTabsModule,
     MatDialogModule,
-    AdminModule,MatGridListModule,TeacherDashModule,MatRadioModule
+    AdminModule,MatGridListModule,TeacherDashModule,MatRadioModule,LoginModule,MatButtonModule,MatToolbarModule,
+    StudentDashBoardModule
     
    
    
 
     
   ],
-  
-  providers: [],
+ 
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 
 })

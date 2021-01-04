@@ -1,0 +1,92 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Profile</h2>
+      </ng-template>
+      <section>
+        <div align="right" class="button-text">
+          
+        </div>
+      </section>
+
+      <mat-table [dataSource]="studentProfile" class="mat-elevation-z8">
+
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>
+            <h3> <b>Student Profile</b></h3>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.item_name}} </mat-cell>
+        </ng-container>
+  
+  
+        <!-- DOB Column -->
+        <ng-container matColumnDef="detail">
+          <mat-header-cell *matHeaderCellDef>
+          
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+          
+  
+  
+  
+        <mat-header-row *matHeaderRowDef="displayedStudentColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedStudentColumns;"></mat-row>
+      </mat-table>
+
+  
+    </mat-tab>
+  
+  
+  
+  
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Study Material</h2>
+      </ng-template>
+  
+  
+        
+      
+  
+        
+             
+          
+                
+                
+        </mat-tab>
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Assignment Works</h2>
+      </ng-template>
+      <section>
+        <div align="right" class="button-text">
+         
+        </div>
+      </section>
+    </mat-tab>
+  
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Attendance Management</h2>
+      </ng-template>
+    </mat-tab>
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Exam Information</h2>
+      </ng-template>
+      <section>
+        <div align="right" class="button-text">
+         
+        </div>
+      </section>
+    </mat-tab>
+  
+  </mat-tab-group>

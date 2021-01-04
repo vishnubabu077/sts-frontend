@@ -68,10 +68,10 @@
 
 
 <mat-grid-tile>
-  <mat-form-field hintLabel="Max 10 characters" appearance="outline">
+  <mat-form-field hintLabel="Max 20 characters" appearance="outline">
     <mat-label>Email ID</mat-label>
-    <input matInput #input maxlength="20" placeholder="Ex. Smruthy M S" formControlName="email" >
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    <input matInput #input maxlength="50" placeholder="Ex. Smruthy M S" formControlName="email" >
+    <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
   </mat-form-field>
 </mat-grid-tile>
 

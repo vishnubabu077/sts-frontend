@@ -1,7 +1,7 @@
 <mat-toolbar color="basic">
   <div>
     <span>
-      <mat-label class="button-text">Select Department:</mat-label>
+      <mat-label class="button-text">Select Department :</mat-label>
       <mat-select (selectionChange)="departmentChange($event) ">
         <mat-option *ngFor="let option of departments" [value]=option>
           {{option.department}}</mat-option>
@@ -64,14 +64,7 @@
       </ng-container>
 
 
-      <!-- Gender Column -->
-      <!-- <ng-container matColumnDef="gender">
-          <mat-header-cell *matHeaderCellDef>
-            <h3> <b>Gender</b></h3>
-          </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.gender}}  </mat-cell>
-        </ng-container>  -->
-
+      
 
       <!-- Department Column -->
       <ng-container matColumnDef="department">
@@ -167,13 +160,6 @@
             </mat-table>
             
            
-    <!-- <section> -->
-    <!-- <div align="right" class="button-text"> -->
-    <!-- <div class="example-button-row"> -->
-    <!-- <button mat-raised-button color="primary" (click)="openStudyMaterialDialog()">Add StudyMaterials</button>  -->
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- </section> -->
 
   </mat-tab>
 

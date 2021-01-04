@@ -8,6 +8,8 @@ export class TeacherModel
 	public  first_name;
 
 	public  last_name;
+
+	public  email;
 	
 	public designation :DesignationModel ;
 

@@ -1,0 +1,46 @@
+
+  <div class="example-container">
+    <mat-card class="example-card">
+    <mat-grid-list cols="1" rowHeight="2:1">
+   
+      <form [formGroup]="loginForm">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+              <mat-label>UserName</mat-label>
+              <textarea matInput  #input maxlength="50" placeholder="Enter Username" formControlName="username"></textarea>
+              <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+          </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <textarea matInput  #input maxlength="50" placeholder="Enter password" formControlName="password"></textarea>
+                <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+            </mat-form-field>
+            </mat-grid-tile>
+
+       
+      </form>
+      <mat-grid-tile>
+        <button mat-raised-button color="primary" (click)="login()">Log in</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+   
+       
+       
+     
+        
+    
+    </mat-card>
+  
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+      </div>
+
+      
+   
+
+   
+    </div>
+
+   
